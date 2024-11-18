@@ -14,6 +14,8 @@ function getComputerChoice() {
             break;
     }
 
+    console.log(`Computer choice: ${result}`)
+
     return result;
 }
 
@@ -29,6 +31,7 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+    humanChoice = humanChoice.toLowerCase();
     if (humanChoice === computerChoice) {
         return "draw"; // Both choices are the same
     }
@@ -56,27 +59,10 @@ function declareWinner(humanScore, computerScore) {
     }
 }
 
-function playGame () {
-    let humanScore = 0;
-    let computerScore = 0;
+const playerOptions = document.querySelector("#playerOptions");
 
-    for (let i = 0; i < 5; i++) {
-        let computerChoice = getComputerChoice();
-        let winner = playRound(getHumanChoice(), computerChoice);
-
-        if (winner === "human") {
-            humanScore++;
-        } else if (winner === "computer") {
-            computerScore++;
-        }
-        console.log("Computer Choice:");
-        console.log(computerChoice);
-        console.log("Your Score:");
-        console.log(humanScore);
-        console.log("Computer Score:");
-        console.log(computerScore);
-    }
-    declareWinner(humanScore, computerScore);
-}
-
-playGame();
+playerOptions.addEventListener("click", (event) => {
+    let target = event.target;
+    let winner = playRound(target.textContent, getComputerChoice());
+    console.log(winner);
+});
