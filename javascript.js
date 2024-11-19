@@ -17,8 +17,8 @@ function getComputerChoice() {
     return result;
 }
 
-function playRound(humanChoice, computerChoice) {
-    if (humanChoice === computerChoice) {
+function playRound() {
+    if (playerChoice.textContent === computerChoice.textContent) {
         return "draw"; // Both choices are the same
     }
 
@@ -28,7 +28,7 @@ function playRound(humanChoice, computerChoice) {
         Scissors: "Paper",  // Scissors beats paper
     };
 
-    if (winningCombinations[humanChoice] === computerChoice) {
+    if (winningCombinations[playerChoice.textContent] === computerChoice.textContent) {
         return "player"; // Human wins
     } else {
         return "computer"; // Computer wins
@@ -41,13 +41,19 @@ function declareRoundWinner (roundwinner) {
     if (roundwinner === "computer") return "You Lost";
 }
 
-function updatePoints (roundWinner, playerPointsPointer, computerPointsPointer) {
-    if (roundWinner === "player") playerPointsPointer.textContent = Number(playerPointsPointer.textContent) + 1;
-    else if (roundWinner === "computer") computerPointsPointer.textContent = Number(computerPointsPointer.textContent) + 1;
+function updatePoints (roundWinner) {
+    if (roundWinner === "player") playerPoints.textContent = Number(playerPoints.textContent) + 1;
+    else if (roundWinner === "computer") computerPoints.textContent = Number(computerPoints.textContent) + 1;
 }
 
-// function checkWinner (playerPoints, computerPoints) {
-//     if (playerPoints === 5) 
+// function checkWinner (playerPointsPointer, computerPointsPointer) {
+//     let  = "none";
+//     if (playerPointsPointer.textContent == 5) {
+//         playerPointsPointer.textContent = 0;
+//         computerPointsPointer.textContent = 0;
+//         return "You Won the Game!!!";
+//     if (computerPointsPointer.textContent == 5) return "You Lost the Game";
+
 // }
 
 const playerOptions = document.querySelector("#playerOptions");
@@ -62,8 +68,9 @@ playerOptions.addEventListener("click", (event) => {
     let target = event.target;
     playerChoice.textContent = target.textContent;
     computerChoice.textContent = getComputerChoice();
-    let roundWinner = playRound(playerChoice.textContent, computerChoice.textContent);
+    let roundWinner = playRound();
     winnerDeclaration.textContent = declareRoundWinner(roundWinner);
-    updatePoints(roundWinner, playerPoints, computerPoints);
+    updatePoints(roundWinner);
+    // gameWinner.textContent = checkWinner(playerPoints, computerPoints);
 });
 
