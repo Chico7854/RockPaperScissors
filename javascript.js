@@ -19,7 +19,7 @@ function getComputerChoice() {
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === computerChoice) {
-        return "Draw"; // Both choices are the same
+        return "draw"; // Both choices are the same
     }
 
     const winningCombinations = {
@@ -29,20 +29,41 @@ function playRound(humanChoice, computerChoice) {
     };
 
     if (winningCombinations[humanChoice] === computerChoice) {
-        return "You Won"; // Human wins
+        return "player"; // Human wins
     } else {
-        return "Computer Won"; // Computer wins
+        return "computer"; // Computer wins
     }
 }
+
+function declareRoundWinner (roundwinner) {
+    if (roundwinner === "draw") return "Draw";
+    if (roundwinner === "player") return "You Won!";
+    if (roundwinner === "computer") return "You Lost";
+}
+
+function updatePoints (roundWinner, playerPointsPointer, computerPointsPointer) {
+    if (roundWinner === "player") playerPointsPointer.textContent = Number(playerPointsPointer.textContent) + 1;
+    else if (roundWinner === "computer") computerPointsPointer.textContent = Number(computerPointsPointer.textContent) + 1;
+}
+
+// function checkWinner (playerPoints, computerPoints) {
+//     if (playerPoints === 5) 
+// }
 
 const playerOptions = document.querySelector("#playerOptions");
 const playerChoice = document.querySelector("#playerChoice");
 const computerChoice = document.querySelector("#computerChoice");
 const winnerDeclaration = document.querySelector("#winnerDeclaration");
+const playerPoints = document.querySelector("#playerPoints");
+const computerPoints = document.querySelector("#computerPoints");
+const gameWinner = document.querySelector("#gameWinner");
 
 playerOptions.addEventListener("click", (event) => {
     let target = event.target;
     playerChoice.textContent = target.textContent;
     computerChoice.textContent = getComputerChoice();
-    winnerDeclaration.textContent = playRound(playerChoice.textContent, computerChoice.textContent);
+    let roundWinner = playRound(playerChoice.textContent, computerChoice.textContent);
+    winnerDeclaration.textContent = declareRoundWinner(roundWinner);
+    updatePoints(roundWinner, playerPoints, computerPoints);
 });
+
