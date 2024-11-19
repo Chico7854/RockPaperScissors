@@ -24,8 +24,8 @@ function getComputerChoice() {
     return result;
 }
 
-function playRound() {
-    if (playerChoice.textContent === computerChoice.textContent) {
+function playRound(playerChoice, computerChoice) {
+    if (playerChoice === computerChoice) {
         return "draw"; // Both choices are the same
     }
 
@@ -35,7 +35,7 @@ function playRound() {
         Scissors: "Paper",  // Scissors beats paper
     };
 
-    if (winningCombinations[playerChoice.textContent] === computerChoice.textContent) {
+    if (winningCombinations[playerChoice] === computerChoice) {
         return "player"; // Human wins
     } else {
         return "computer"; // Computer wins
@@ -58,6 +58,26 @@ function checkWinner () {
     else if (computerPoints.textContent == 5) return "You Lost the Game";
 }
 
+function updateImagesFightRound (playerChoiceString, computerChoiceString) {
+    const imagesSrc = {
+        Rock: "./images/rock.png",
+        Paper: "./images/paper.png",
+        Scissors: "./images/scissors.png"
+    };
+
+    const imagesAlt = {
+        Rock: "Rock",
+        Paper: "Paper",
+        Scissors: "Scissors"
+    }
+
+    playerChoice.src = imagesSrc[playerChoiceString];
+    playerChoice.alt = imagesAlt[playerChoiceString];
+
+    computerChoice.src = imagesSrc[computerChoiceString];
+    computerChoice.alt = imagesAlt[computerChoiceString];
+}
+
 const playerOptions = document.querySelector("#playerOptions");
 const playerChoice = document.querySelector("#playerChoice");
 const computerChoice = document.querySelector("#computerChoice");
@@ -69,9 +89,11 @@ const gameWinner = document.querySelector("#gameWinner");
 playerOptions.addEventListener("click", (event) => {
     checkNewGame();
     let target = event.target;
-    playerChoice.textContent = target.textContent;
-    computerChoice.textContent = getComputerChoice();
-    let roundWinner = playRound();
+    if (target.tagName === "DIV") stopImadiatePropagation();
+    let playerChoiceString = target.id;
+    let computerChoiceString = getComputerChoice();
+    updateImagesFightRound(playerChoiceString, computerChoiceString);
+    let roundWinner = playRound(playerChoiceString, computerChoiceString);
     winnerDeclaration.textContent = declareRoundWinner(roundWinner);
     updatePoints(roundWinner);
     gameWinner.textContent = checkWinner();
