@@ -4,65 +4,45 @@ function getComputerChoice() {
 
     switch(computerChoice) {
         case 0:
-            result = "rock";
+            result = "Rock";
             break;
         case 1:
-            result = "paper";
+            result = "Paper";
             break;
         case 2:
-            result = "scissors";
+            result = "Scissors";
             break;
     }
-
-    console.log(`Computer choice: ${result}`)
 
     return result;
 }
 
-function getHumanChoice() {
-    let humanChoice = prompt("Choice: ").toLowerCase();
-
-    if (humanChoice !== "rock" && humanChoice !== "paper" && humanChoice !== "scissors") {
-        getHumanChoice();
-    }
-    else {
-        return humanChoice;
-    }
-}
-
 function playRound(humanChoice, computerChoice) {
-    humanChoice = humanChoice.toLowerCase();
     if (humanChoice === computerChoice) {
-        return "draw"; // Both choices are the same
+        return "Draw"; // Both choices are the same
     }
 
     const winningCombinations = {
-        rock: "scissors",   // Rock beats scissors
-        paper: "rock",      // Paper beats rock
-        scissors: "paper",  // Scissors beats paper
+        Rock: "Scissors",   // Rock beats scissors
+        Paper: "Rock",      // Paper beats rock
+        Scissors: "Paper",  // Scissors beats paper
     };
 
     if (winningCombinations[humanChoice] === computerChoice) {
-        return "human"; // Human wins
+        return "You Won"; // Human wins
     } else {
-        return "computer"; // Computer wins
-    }
-}
-
-function declareWinner(humanScore, computerScore) {
-    if (humanScore === computerScore) {
-        console.log ("Draw");
-    } else if (humanScore < computerScore) {
-        console.log ("Computer Won");
-    } else {
-        console.log ("You Won");
+        return "Computer Won"; // Computer wins
     }
 }
 
 const playerOptions = document.querySelector("#playerOptions");
+const playerChoice = document.querySelector("#playerChoice");
+const computerChoice = document.querySelector("#computerChoice");
+const winnerDeclaration = document.querySelector("#winnerDeclaration");
 
 playerOptions.addEventListener("click", (event) => {
     let target = event.target;
-    let winner = playRound(target.textContent, getComputerChoice());
-    console.log(winner);
+    playerChoice.textContent = target.textContent;
+    computerChoice.textContent = getComputerChoice();
+    winnerDeclaration.textContent = playRound(playerChoice.textContent, computerChoice.textContent);
 });
