@@ -10,9 +10,16 @@ body {
 }
 
 img {
-    height: 15%;
-    width: 15%;
-    border-radius: 10%;
+    height: 15vh;
+    width: auto;
+}
+
+button {
+    height: 30vh;
+    width: 30vh;
+    background-color: #3d3d3d;
+    border-radius: 15%;
+    cursor: pointer;
 }
 
 header, footer {
@@ -31,4 +38,13 @@ header h1 {
     height: 40%;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
+}
+
+#roundResult {
+    height: 30%;
+}
+
+#gameResult {
+    height: 30%;
 }
