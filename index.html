@@ -13,20 +13,25 @@
         <button id="Paper" data-text="Paper"><img src="./images/paper.png" alt="Paper"></button>
         <button id="Scissors" data-text="Scissors"><img src="./images/scissors.png" alt="Scissors"></button>
     </div>
-    <div id="roundFight">
+    <div id="roundResult">
         <h2>Você</h2>
         <div><img id="playerChoice"></div>
         <img id="versus" src="./images/vs.png" alt="versus">
         <div><img id="computerChoice"></div>
         <h2>Adversário</h2>
     </div>
-    <div id="roundResult"><p id="winnerDeclaration"></p></div>
-    <div id="gameResult">
-        <p>Player Points: <span id="playerPoints">0</span></p>
-        <p>Computer Points: <span id="computerPoints">0</span></p>
-        <p id="gameWinner"></p>
+    <div id="winnerDeclaration"></div>
+    <div id="points">
+        <div>
+            <p>Player Points</p>
+            <span id="playerPoints">0</span>
+        </div>
+        <div>
+            <p>Computer Points</p>
+            <span id="computerPoints">0</span>
+        </div>
     </div>
-    <footer></footer>
+    <div id="gameWinner"></div>
     <script src="javascript.js"></script>
 </body>
 </html>

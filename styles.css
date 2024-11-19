@@ -9,6 +9,10 @@ body {
     justify-content: space-between;
 }
 
+p {
+    margin: 0;
+}
+
 img {
     height: 15vh;
     width: auto;
@@ -24,9 +28,10 @@ button {
     flex: none;
 }
 
-header, footer {
+header{
     background-color: #121212;
     height: 5%;
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,28 +43,27 @@ header h1 {
 
 #playerOptions {
     height: 35%;
-    margin-top: 30px;
+    margin-top: 20px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
 
-#roundFight {
+#roundResult {
     height: 25%;
+    margin-top: 20px;
     display: flex;
     align-items: center;
 }
 
-#roundFight h2 {
+#roundResult h2 {
     font-size: 30px;
     font-weight: 900;
     width: 300px;
     text-align: center;
 }
 
-
-
-#roundFight div {
+#roundResult div {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -70,6 +74,21 @@ header h1 {
     height: 5%;
 }
 
-#gameResult {
-    height: 30%;
+#winnerDeclaration {
+    font-size: 35px;
+    font-weight: 900;
+    text-align: center;
+}
+
+#points {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#points div {
+    width: 300px;
+    font-size: 23px;
+    font-weight: 900;
+    text-align: center;
 }

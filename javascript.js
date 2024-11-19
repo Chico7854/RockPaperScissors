@@ -43,9 +43,9 @@ function playRound(playerChoice, computerChoice) {
 }
 
 function declareRoundWinner (roundwinner) {
-    if (roundwinner === "draw") return "Draw";
-    if (roundwinner === "player") return "You Won!";
-    if (roundwinner === "computer") return "You Lost";
+    if (roundwinner === "draw") return "Empate";
+    if (roundwinner === "player") return "Você Ganhou!";
+    if (roundwinner === "computer") return "Você Perdeu";
 }
 
 function updatePoints (roundWinner) {
@@ -54,8 +54,8 @@ function updatePoints (roundWinner) {
 }
 
 function checkWinner () {
-    if (playerPoints.textContent == 5) return "You Won the Game!!!"; 
-    else if (computerPoints.textContent == 5) return "You Lost the Game";
+    if (playerPoints.textContent == 5) return "Você Ganhou o Jogo!!!"; 
+    else if (computerPoints.textContent == 5) return "Você Perdeu o Jogo";
 }
 
 function updateImagesFightRound (playerChoiceString, computerChoiceString) {
