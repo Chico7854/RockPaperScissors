@@ -1,3 +1,10 @@
+function checkNewGame () {
+    if (playerPoints.textContent == 5 || computerPoints.textContent == 5) {
+        playerPoints.textContent = 0;
+        computerPoints.textContent = 0;
+    }
+}
+
 function getComputerChoice() {
     let computerChoice = Math.floor(Math.random() * 10) % 3;
     let result;
@@ -46,15 +53,10 @@ function updatePoints (roundWinner) {
     else if (roundWinner === "computer") computerPoints.textContent = Number(computerPoints.textContent) + 1;
 }
 
-// function checkWinner (playerPointsPointer, computerPointsPointer) {
-//     let  = "none";
-//     if (playerPointsPointer.textContent == 5) {
-//         playerPointsPointer.textContent = 0;
-//         computerPointsPointer.textContent = 0;
-//         return "You Won the Game!!!";
-//     if (computerPointsPointer.textContent == 5) return "You Lost the Game";
-
-// }
+function checkWinner () {
+    if (playerPoints.textContent == 5) return "You Won the Game!!!"; 
+    else if (computerPoints.textContent == 5) return "You Lost the Game";
+}
 
 const playerOptions = document.querySelector("#playerOptions");
 const playerChoice = document.querySelector("#playerChoice");
@@ -65,12 +67,13 @@ const computerPoints = document.querySelector("#computerPoints");
 const gameWinner = document.querySelector("#gameWinner");
 
 playerOptions.addEventListener("click", (event) => {
+    checkNewGame();
     let target = event.target;
     playerChoice.textContent = target.textContent;
     computerChoice.textContent = getComputerChoice();
     let roundWinner = playRound();
     winnerDeclaration.textContent = declareRoundWinner(roundWinner);
     updatePoints(roundWinner);
-    // gameWinner.textContent = checkWinner(playerPoints, computerPoints);
+    gameWinner.textContent = checkWinner();
 });
 
